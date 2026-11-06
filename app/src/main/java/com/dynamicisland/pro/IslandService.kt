@@ -70,7 +70,7 @@ class IslandService : Service() {
             addAction(ACTION_REFRESH)
             addAction(TelephonyManager.ACTION_PHONE_STATE_CHANGED)
         }
-        if(Build.VERSION.SDK_INT>=33) registerReceiver(receiver,filter,Context.RECEIVER_EXPORTED) else @Suppress("DEPRECATION") registerReceiver(receiver,filter)
+        if(Build.VERSION.SDK_INT>=33) { registerReceiver(receiver,filter,Context.RECEIVER_EXPORTED) } else { registerReceiver(receiver,filter) }
         buildCapsule()
         val sticky=registerReceiver(null,IntentFilter(Intent.ACTION_BATTERY_CHANGED))
         if(sticky!=null) receiver.onReceive(this,sticky)

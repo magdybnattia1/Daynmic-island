@@ -10,6 +10,8 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.view.Gravity
+import android.os.SystemClock
+import android.widget.Chronometer
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -45,6 +47,13 @@ class MainActivity : Activity() {
             text="المميزات: إشعارات التطبيقات وواتساب، الموسيقى والتحكم، الشحن ونسبة البطارية، حالة المكالمات، وتخصيص اللون والحجم. افتح الكبسولة لعرض أدوات الموسيقى."
             textSize=13f; setTextColor(Color.LTGRAY); setPadding(0,16,0,0)
         })
+        val timerTitle=TextView(this).apply { text="المؤقت / ساعة الإيقاف"; textSize=18f; setTextColor(Color.WHITE); setPadding(0,18,0,4) }
+        val clock=Chronometer(this).apply { textSize=24f; setTextColor(Color.WHITE); base=SystemClock.elapsedRealtime() }
+        root.addView(timerTitle)
+        root.addView(clock)
+        button(root,"بدء المؤقت") { clock.base=SystemClock.elapsedRealtime(); clock.start() }
+        button(root,"إيقاف المؤقت") { clock.stop() }
+        button(root,"إعادة ضبط المؤقت") { clock.stop(); clock.base=SystemClock.elapsedRealtime() }
         setContentView(root)
         if (Build.VERSION.SDK_INT>=33 && checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)!=PackageManager.PERMISSION_GRANTED) requestPermissions(arrayOf(Manifest.permission.POST_NOTIFICATIONS),3)
     }

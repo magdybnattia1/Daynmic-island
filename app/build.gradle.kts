@@ -3,13 +3,13 @@ plugins {
     id("org.jetbrains.kotlin.android")
 }
 android {
-    namespace = "com.example.dynamicisland"
+    namespace = "com.dynamicisland.pro"
     compileSdk = 35
     defaultConfig {
-        applicationId = "com.example.dynamicisland"
+        applicationId = "com.dynamicisland.pro"
         minSdk = 26
         targetSdk = 35
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.0.0"
     }
 }

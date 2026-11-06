@@ -55,9 +55,12 @@ class IslandService : Service() {
             elevation = 18f
         }
 
-        val type = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
+        @Suppress("DEPRECATION")
+        val type = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY
-        else @Suppress("DEPRECATION") WindowManager.LayoutParams.TYPE_PHONE
+        } else {
+            WindowManager.LayoutParams.TYPE_PHONE
+        }
 
         val params = WindowManager.LayoutParams(
             WindowManager.LayoutParams.WRAP_CONTENT,
